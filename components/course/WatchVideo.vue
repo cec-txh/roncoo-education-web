@@ -24,8 +24,18 @@
     </div>
     <div class="video_body">
       <div class="video_content clearfix" :class="{show_panel: cateType}">
+
         <div class="win_box">
+        <div class="video_play">
+                        <VueVideo :playerOptions="playerOptions" ></VueVideo>
+        </div>
           <div class="video_win" id="player" ref="videobox" :style="'background-image:url('+courseInfo.courseLogo+')'">
+          <!-- <video-player  class="video-player vjs-custom-skin"
+                             ref="videoPlayer"
+                             :playsinline="true"
+                             :options="playerOptions"></video-player>
+
+                             -->
           </div>
           <span class="iconfont close_video" v-if="showTop" @click="stopVideo">&#xe616;</span>
         </div>
@@ -63,11 +73,23 @@
   </div>
 </template>
 <script>
+ import VueVideo from '~/components/VueVideo'
+ require('video.js/dist/video-js.css')
+ require('vue-video-player/src/custom-theme.css')
+
+
 export default {
+  components:{
+    VueVideo
+  },
   props: {
     courseInfo: {
       type: Object,
       default: null
+    },
+    playerOptions: {
+          type: Object,
+          default: null
     },
     nowNo: {
       type: String,
@@ -235,6 +257,10 @@ export default {
       border-radius: 8px;
       border: 5px solid #000;
     }
+    .video_play {
+      width: 1080px;
+      height: 585px;
+    }
     .video_win {
       width: 1110px;
       height: 585px;
@@ -255,7 +281,7 @@ export default {
       float: right;
       padding-top: 20px;
       height: 595px;
-      background-color: #333;      
+      background-color: #333;
       a {
         overflow: hidden;
         display: block;

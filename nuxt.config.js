@@ -38,7 +38,8 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    '@/assets/css/main.scss'
+    '@/assets/css/main.scss',
+    'video.js/dist/video-js.css'
   ],
 
   /*
@@ -46,7 +47,8 @@ module.exports = {
   */
   plugins: [
     '~/plugins/message.js',
-    '~/plugins/dragging.js'
+    '~/plugins/dragging.js',
+    { src: '~plugins/videoPlayer.js', ssr: false }
   ],
 
   /*
